@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>Saludo de Kubernetes</title>
+    <script>
+        // Arreglo de mensajes personalizados
+        const mensajes = [
+            "¡Hola, amigo!",
+            "Bienvenido a mi aplicación de prueba en Kubernetes.",
+            "Espero que tengas un gran día.",
+            "Gracias por visitarnos."
+        ];
+
+        // Función para mostrar un mensaje aleatorio
+        function mostrarMensaje() {
+            const mensaje = mensajes[Math.floor(Math.random() * mensajes.length)];
+            document.getElementById("saludo").textContent = mensaje;
+        }
+
+        // Mostrar un mensaje personalizado al cargar la página
+        window.addEventListener("load", mostrarMensaje);
+    </script>
+</head>
+<body>
+    <h1 id="saludo"></h1>
+</body>
+</html>

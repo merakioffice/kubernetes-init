@@ -1,0 +1,6 @@
+version: '3'
+services:
+  web:
+    image: arianvaldivieso/kubectl
+    ports:
+      - "80:8080"

@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: web-ingress
+  namespace: arian
+  annotations:
+    cert-manager.io/issuer: letsencrypt-staging  # Nombre del ClusterIssuer o ClusterIssuer de producción
+spec:
+  rules:
+  - host: hello-world.local
+    http:
+      paths:
+      - path: /v1
+        pathType: Prefix
+        backend:
+          service:
+            name: web-v1
+            port:
+              number: 80
+      - path: /v2
+        pathType: Prefix
+        backend:
+          service:
+            name: web-v2
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - hello-world.local
+    secretName: hello-world-local-tls

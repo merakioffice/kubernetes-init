@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: arian
+  namespace: arian
+spec: {}
+status: {}

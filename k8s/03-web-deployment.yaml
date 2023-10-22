@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -o ./k8s/ -n arian
+    kompose.version: 1.31.2 (a92241f79)
+  labels:
+    io.kompose.service: web-v1
+  name: web-v1
+  namespace: arian
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      io.kompose.service: web-v1
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -o ./k8s/ -n arian
+        kompose.version: 1.31.2 (a92241f79)
+      labels:
+        io.kompose.network/kubernetes-dev-default: "true"
+        io.kompose.service: web-v1
+    spec:
+      containers:
+        - image: gcr.io/google-samples/hello-app:1.0
+          name: web-v1
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources:
+            limits:
+              cpu: "0.5"  # Límite de CPU
+              memory: "512Mi"  # Límite de memoria
+            requests:
+              cpu: "0.2"  # Requerimiento de CPU
+              memory: "256Mi"  # Requerimiento de memoria
+      restartPolicy: Always
+status: {}
